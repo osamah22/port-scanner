@@ -7,6 +7,10 @@ It scans IPs or domains and detects open TCP ports using concurrent network conn
 
 ---
 
+### 🖥️ Local Server Detection
+![Running Server](screenshots/running_server.png)
+![Nothing Running](screenshots/no_ports.png)
+
 ## ✨ Features
 
 * 🌐 Domain → IP resolution
