@@ -40,6 +40,14 @@ go build -o port-scanner
 
 ### Scan a single IP
 
+#### Linux
 ```bash
-./port
+LOCAL_IP=$(ip route get 1.1.1.1 | awk '{print $7}')
+./port --open-only --target="$LOCAL_IP" --ports 7000-8085
+```
+
+#### macOS
+```bash
+LOCAL_IP=$(ipconfig getifaddr en0)
+./port --open-only --target="$LOCAL_IP" --ports 7000-8085
 ```
