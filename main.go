@@ -127,6 +127,7 @@ func ScanPort(ip string, port int, timeout int, sc *Scanned, wg *sync.WaitGroup)
 
 func main() {
 	target := flag.String("target", "", "Target IP address")
+	openOnly := flag.Bool("open-only", false, "Open only exclude close ports, this could be usefull when running large input of ports")
 	domain := flag.String("domain", "", "Target domain name")
 	ports := flag.String("ports", "80,443", "Ports to scan, example: 22,80,443,8000-8005")
 	preset := flag.String("preset", "", "Port preset: common, web, dev")
@@ -188,6 +189,9 @@ func main() {
 
 		fmt.Printf("\n%s\n", ip)
 		for _, result := range results {
+			if *openOnly && strings.Contains(result, "closed") {
+				continue
+			}
 			fmt.Printf("  - %s\n", result)
 		}
 	}
